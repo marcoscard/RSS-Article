@@ -1,0 +1,8 @@
+{
+  "name": "Rss Article",
+  "description": "Every day a different article.",
+  "uuid": "rssarticle@marcoscard.github.com",
+  "shell-version": [
+    "3.38"
+  ]
+}

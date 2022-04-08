@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist>
+    <schema id="org.gnome.extensions.rssarticle"
+    path="/org/gnome/shell/extensions/rssarticle/">
+
+    <key type="as" name="feeds">
+        <default>[]</default>
+        <summary>RSS Feeds</summary>
+        <description>List of RSS feeds resources.</description>
+    </key>
+
+    <key type="as" name="favorites">
+        <default>[]</default>
+        <summary>Favorites RSS resources</summary>
+        <description>List of favorites RSS resources.</description>
+    </key>
+
+    <key type="as" name="readlist">
+        <default>[]</default>
+        <summary>Reading list</summary>
+        <description>List of RSS resource to read later.</description>
+    </key>
+
+    </schema>
+</schemalist>
