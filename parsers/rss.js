@@ -1,35 +1,59 @@
-function getTitles(feed) {
-    let arr = []
+const Me = imports.misc.extensionUtils.getCurrentExtension()
+const GObject = imports.gi.GObject
+const Base = Me.imports.parsers.base
 
-    return arr    
-}
+const RssParser = GObject.registerClass(
+    class RssParser extends Base.BaseParser {
 
-function getImages(feed) {
-    let arr = []
-    
-    return arr
-}
+        _init(root) {
+            super._init(root)
+            log("RSS 2.0 Parser")
+        }
 
-function getDescriptions(feed) {
-    let arr = []
-    
-    return arr
-}
+        // Parse feed file
+        parse = function () {
+            this._parsePublisher(this._root.childElements[0].childElements)
+        }
 
-function getTitle(index) {
-    title = ''
 
-    return title
-}
+        _parsePublisher = function (childElements) {
 
-function getImage(index) {
-    src = ''
+            for (let index = 0; index < childElements.length; index++) {
+                if (childElements[index].name == 'title') {
+                    this.Publisher.Title = childElements[index].text
+                } else if (childElements[index].name == 'link') {
+                    this.Publisher.Link = childElements[index].text
+                } else if (childElements[index].name == 'description') {
+                    this.Publisher.Description = childElements[index].text
+                } else if (childElements[index].name == 'pubDate') {
+                    this.Publisher.PublishDate = childElements[index].text
+                } else if (childElements[index].name == 'item') {
+                    this._parseItem(childElements[index].childElements)
+                }
+            }
+        }
 
-    return src
-}
 
-function getDescription(index) {
-    description = ''
+        _parseItem = function (itemElements) {
+            let item = this._initItem()
 
-    return description
-}
+            for (let index = 0; index < itemElements.length; index++) {
+
+                if (itemElements[index].name == 'title') {
+                    item.Title = itemElements[index].text
+                } else if (itemElements[index].name == 'link') {
+                    item.HttpLink = itemElements[index].text
+                } else if (itemElements[index].name == 'description') {
+                    item.Description = itemElements[index].text
+                } else if (itemElements[index].name == 'author') {
+                    item.Author = itemElements[index].text
+                } else if (itemElements[index].name == 'enclosure') {
+                    item.ImgLink = itemElements[index].attributes.url
+                } else if (itemElements[index].name == 'pubDate') {
+                    item.PublishDate = itemElements[index].text
+                }
+            }
+            this.Items.push(item)
+        }
+
+    })
