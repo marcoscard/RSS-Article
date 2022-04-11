@@ -17,18 +17,18 @@ function RSScreator(rawXML) {
 
         test = 'rss'
         if (xmlObj.name.toLowerCase().slice(0, test.length) == test) {
-            return new RSS.RssParser()
+            return new RSS.RssParser(xmlObj)
         }
         test = 'rdf:RDF'
         if (xmlObj.name.slice(0, test.length) == test) {
-            return new RDF.RdfParser()
+            return new RDF.RdfParser(xmlObj)
         }
         test = 'feed'
         if (xmlObj.name.toLowerCase().slice(0, test.length) == test) {
-            return new Atom.AtomParser()
+            return new Atom.AtomParser(xmlObj)
         }
         if (xmlObj.attribute('xmlns:feedburner') == 'http://rssnamespace.org/feedburner/ext/1.0') {
-            return new FeedBurner.FeedBurnerParser()
+            return new FeedBurner.FeedBurnerParser(xmlObj)
         }
     } catch (error) {
         logError(error)
