@@ -33,5 +33,5 @@ function RSScreator(rawXML) {
     } catch (error) {
         logError(error)
     }
-
+    return null
 }
