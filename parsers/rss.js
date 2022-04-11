@@ -11,12 +11,12 @@ const RssParser = GObject.registerClass(
         }
 
         // Parse feed file
-        parse = function () {
+        parse() {
             this._parsePublisher(this._root.childElements[0].childElements)
         }
 
 
-        _parsePublisher = function (childElements) {
+        _parsePublisher(childElements) {
 
             for (let index = 0; index < childElements.length; index++) {
                 if (childElements[index].name == 'title') {
@@ -34,7 +34,7 @@ const RssParser = GObject.registerClass(
         }
 
 
-        _parseItem = function (itemElements) {
+        _parseItem(itemElements) {
             let item = this._initItem()
 
             for (let index = 0; index < itemElements.length; index++) {

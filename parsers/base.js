@@ -20,7 +20,7 @@ const BaseParser = GObject.registerClass(
         }
 
 
-        _initItem = function () {
+        _initItem() {
             let item = {
                 Title: '',
                 HttpLink: '',
@@ -33,7 +33,7 @@ const BaseParser = GObject.registerClass(
         }
 
 
-        clear = function () {
+        clear() {
             // Clear publisher and items 
             this.Publisher.Title = ''
             this.Publisher.HttpLink = ''
@@ -45,17 +45,17 @@ const BaseParser = GObject.registerClass(
         }
 
 
-        parse = function () {
+        parse() {
             // Parse feed
         }
 
 
-        _parsePublisher = function () {
+        _parsePublisher() {
     
         }
 
 
-        _parseItem = function () {
+        _parseItem() {
             
         }
 
