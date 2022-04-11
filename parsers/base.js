@@ -3,7 +3,7 @@ const GObject = imports.gi.GObject
 
 
 const BaseParser = GObject.registerClass(
-    class BaseParser {
+    class BaseParser extends GObject.Object {
 
         static Items = []
 
